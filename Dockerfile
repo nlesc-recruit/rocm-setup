@@ -14,7 +14,8 @@ RUN apt update && apt -y install wget build-essential git cmake
 # Install ROCm
 RUN wget https://repo.radeon.com/amdgpu-install/6.1.3/ubuntu/jammy/amdgpu-install_6.1.60103-1_all.deb
 RUN apt -y install ./amdgpu-install_6.1.60103-1_all.deb
-RUN DEBIAN_FRONTEND=noninteractive amdgpu-install --accept-eula -y --usecase=hiplibsdk --no-dkms
+RUN apt update
+RUN apt -y install rocm-hip-runtime-dev hipfft-dev
 
 # Set environment variables
 ENV PATH="$PATH:/opt/rocm/bin:/opt/rocm/rocprofiler/bin:/opt/rocm/hip/bin"
